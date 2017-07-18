@@ -1,4 +1,4 @@
-yntax on
+syntax on
 set number
 set wrapmargin=8
 
