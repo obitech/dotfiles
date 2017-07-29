@@ -1,4 +1,5 @@
 syntax on
+colorscheme desert
 set number
 set wrapmargin=8
 
