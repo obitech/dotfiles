@@ -15,4 +15,4 @@ alias grep="grep --colour=auto"
 # Ignoring duplicates in bash history
 export HISTCONTROL=ignoreboth:erasedups
 
-PS1="\[\033[1;34m\]\u \[\033[0;37m\]at \[\033[1;31m\]\h \[\033[0;37m\]in \[\033[0;32m\]\w\[\033[0m\]:\n\[\033[0;37m\]$ \[\033[0m\]"
+PS1="\[\033[1;93m\]\u \[\033[0;37m\]at \[\033[1;31m\]\h \[\033[0;37m\]in \[\033[0;32m\]\w\[\033[0m\]:\n\[\033[0;37m\]$ \[\033[0m\]"
