@@ -1,0 +1,146 @@
+# Run portainer on startup, map to 9000
+docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" --name portainer --restart=always portainer/portainer
+
+# Start docker container of hypriot in interactive, tty and start sh
+docker run -it --rm hypriot/rpi-alpine:3.5 sh
+
+# Build with tag latest
+docker build -t alex/caddy:latest ~/docker/caddy
+
+# Test things!
+docker run -it --rmh hypriot/rpi-alpine:3.5 sh
+
+# Run caddy
+docker run -dp 80:80 -v ~/caddy/Caddyfile:/etc/Caddyfile -v ~/caddy/www/:/srv/www/ --name caddy alex/caddy
+
+# Docker-compose
+docker-compose -f web.yaml up -d
+
+# MySQL
+docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=pw -e MYSQL_DATABASE=wp -d mysql
+
+# MariaDB
+docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=pw -e MYSQL_DATABASE=wp -d mariadb
+
+# WordPress
+docker run -e WORDPRESS_DB_PASSWORD=pw -e WORDPRESS_DB=wp -e WORDPRESS_DB_HOST=wordpressdb:3306-d --name wp --link wordpressdb:mariadb -p 8080:80 wordpress
+
+docker run -e WORDPRESS_DB_PASSWORD=pw -d --name wp --link wordpressdb:mysql -p 80:80 wordpress
+
+# docker: remove ALL dangling images
+docker rmi $(docker images -f "dangling=true" -q)
+
+# Copy SSH key to server
+ssh-copy-id -i ~/.ssh/id_rsa.pub user@server
+
+# Delete stopped Docker containers  with awk
+docker rm -f $(docker container ps -a | grep -v "^CONTAINER" | awk '{print $1}')
+
+# Create new user
+useradd username -G <group> -d <homedir> -p <password>
+
+# Configure ssh for new user
+sudo chown -R username:usergroup /home/username/.ssh
+sudo chmod 0700 /home/username/.ssh
+sudo chmod 0600 /home/username/.ssh/authorized_keys
+
+# Set timezone
+sudo ntpdate ntp.ubuntu.com
+sudo tzselect
+echo "TZ='Europe/Berlin'; export TZ" >> ~/.profile
+sudo mv /etc/localtime /etc/localtime.old
+sudo ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
+# Wifi config
+sudo lshw -C network
+iwconfig
+
+# Driver
+lsmod
+modprobe
+
+# Encrypt file with passphrase with gpg
+gpg -c file
+
+# Decrypt with gpg
+gpg file
+
+# Get IP
+curl ipinfo.io/ip
+
+# Rsync
+rsync -zvP $HOST $REMOTE
+
+# openssl: Connect with s_client
+openssl s_client -connect host:port
+
+# ssh: Port Forwarding
+ssh -l $USER -p $PORT  -L 1234:localhost:22 $HOST
+
+# git: Adding git remote, u = upstream
+git remote add origin git@github.com:obitech/REPO.git
+git push -u origin master
+
+# git: Updating git remote
+git remote set-url origin git@github.com:obitech/REPO.git
+
+# git: create and checkout into new branch
+git checkout -b $BRANCH
+
+# git: only show short hash of last commit
+git log --oneline | awk '{print $1}' | head -1
+
+# ssh: Generate SSH key
+ssh-keygen -t rsa -b 4096
+
+# Firefox: prevent WebRTC leaks
+media.peerconnection.enabled = false
+
+# Firefox: prevent HTML canvans fingerprinting
+privacy.resistFingerprinting = true
+
+# Firefox: user agent override
+general.useragent.override
+https://techblog.willshouse.com/2012/01/03/most-common-user-agents/
+
+# Firfeox: keep it open when last tab closes
+browser.tabs.closeWindowWithLastTab = false 
+
+# tar: tar it up 
+tar -cf archive.tar file1 file2
+
+# tar: tar and compress files
+tar czf archive.tar.gz file1 file2
+
+# yotubue-dl: stream to vlc
+youtube-dl -o "URL" | vlc -
+
+# youtube-dl: download video
+youtube-dl -o "/path/to/save/file" "URL"
+
+# tar: backup home
+sudo tar -zcpf /tmp/"$(date '+%Y%m%d')-backup-$CUSTOM_NAME.tar.gz" ~
+
+#dig: Reverse DNS
+dig +short $URL A
+
+# dig: get hostname for IP
+dig $IP
+
+# dig: get as much info as possible
+dig $URL ANY
+
+# Location of iphone backup
+~/Library/Application Support/MobileSync/Backup/
+
+# virtualenv: Init venv with specific Python version
+virtualenv --python=$(which python3) venv
+
+# Get user in script when you are root
+who am i | awk '{print $1}'
+
+# minikube: start cluster on mac
+minikube start --vm-driver=xhyve
+
+# kubectl: set context to minikube
+kubectl config use-context minikube
