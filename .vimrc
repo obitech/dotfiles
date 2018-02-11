@@ -1,5 +1,5 @@
 syntax on
-color default
+color desert
 set number
 set wrapmargin=8
 set wrap
