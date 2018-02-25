@@ -144,3 +144,6 @@ minikube start --vm-driver=xhyve
 
 # kubectl: set context to minikube
 kubectl config use-context minikube
+
+# ntfs: mount disk on mac
+sudo /usr/local/bin/ntfs-3g /dev/$DISK /Volumes/NTFS -olocal -oallow_other
