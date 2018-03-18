@@ -39,6 +39,9 @@ docker rm -f $(docker container ps -a | grep -v "^CONTAINER" | awk '{print $1}')
 # Create new user
 useradd username -G <group> -d <homedir> -p <password>
 
+# Create passwd for new user
+echo -e "password\npassword" | passwd $USER
+
 # Configure ssh for new user
 sudo chown -R username:usergroup /home/username/.ssh
 sudo chmod 0700 /home/username/.ssh
@@ -147,3 +150,12 @@ kubectl config use-context minikube
 
 # ntfs: mount disk on mac
 sudo /usr/local/bin/ntfs-3g /dev/$DISK /Volumes/NTFS -olocal -oallow_other
+
+# ssh-keygen: generate new SSH key without passphrase
+ssh-keygen -b 4096 -t rsa -f /path/to/keyfile -q -N "" -C $(date '+%Y%m%d-%T')
+
+# git: only clone latest commit
+git clone --depth=1 $URL
+
+# Python: sane logging defaults
+logging.basicConfig(format='%(asctime)s:%(levelname)s:%(message)s', datefmt='%Y%m%d-%H%M%S', level=logging.INFO)

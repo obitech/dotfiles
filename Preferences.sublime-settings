@@ -1,0 +1,12 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/Mariana.tmTheme",
+	"enable_tab_scrolling": false,
+	"font_size": 11,
+	"hot-exit": true,
+	"indent_to_bracket": true,
+	"scroll_past_end": true,
+	"show_full_path": true,
+	"tab_size": 4,
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true
+}
