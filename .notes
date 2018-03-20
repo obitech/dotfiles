@@ -1,32 +1,3 @@
-# Run portainer on startup, map to 9000
-docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" --name portainer --restart=always portainer/portainer
-
-# Start docker container of hypriot in interactive, tty and start sh
-docker run -it --rm hypriot/rpi-alpine:3.5 sh
-
-# Build with tag latest
-docker build -t alex/caddy:latest ~/docker/caddy
-
-# Test things!
-docker run -it --rmh hypriot/rpi-alpine:3.5 sh
-
-# Run caddy
-docker run -dp 80:80 -v ~/caddy/Caddyfile:/etc/Caddyfile -v ~/caddy/www/:/srv/www/ --name caddy alex/caddy
-
-# Docker-compose
-docker-compose -f web.yaml up -d
-
-# MySQL
-docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=pw -e MYSQL_DATABASE=wp -d mysql
-
-# MariaDB
-docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=pw -e MYSQL_DATABASE=wp -d mariadb
-
-# WordPress
-docker run -e WORDPRESS_DB_PASSWORD=pw -e WORDPRESS_DB=wp -e WORDPRESS_DB_HOST=wordpressdb:3306-d --name wp --link wordpressdb:mariadb -p 8080:80 wordpress
-
-docker run -e WORDPRESS_DB_PASSWORD=pw -d --name wp --link wordpressdb:mysql -p 80:80 wordpress
-
 # docker: remove ALL dangling images
 docker rmi $(docker images -f "dangling=true" -q)
 
@@ -58,10 +29,6 @@ sudo ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 sudo lshw -C network
 iwconfig
 
-# Driver
-lsmod
-modprobe
-
 # Encrypt file with passphrase with gpg
 gpg -c file
 
@@ -92,9 +59,6 @@ git checkout -b $BRANCH
 
 # git: only show short hash of last commit
 git log --oneline | awk '{print $1}' | head -1
-
-# ssh: Generate SSH key
-ssh-keygen -t rsa -b 4096
 
 # Firefox: prevent WebRTC leaks
 media.peerconnection.enabled = false
@@ -139,7 +103,7 @@ dig $URL ANY
 # virtualenv: Init venv with specific Python version
 virtualenv --python=$(which python3) venv
 
-# Get user in script when you are root
+# who: Get user in script when you are root
 who am i | awk '{print $1}'
 
 # minikube: start cluster on mac
@@ -159,3 +123,9 @@ git clone --depth=1 $URL
 
 # Python: sane logging defaults
 logging.basicConfig(format='%(asctime)s:%(levelname)s:%(message)s', datefmt='%Y%m%d-%H%M%S', level=logging.INFO)
+
+# dpkg: unattended upgrade confirmation default/old
+DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
+
+# Unattended German keyboard setup
+sed -i "s/XKBLAYOUT=.*/XKBLAYOUT=\"de\"/g" /etc/default/keyboard
