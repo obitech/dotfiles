@@ -129,3 +129,9 @@ DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -
 
 # Unattended German keyboard setup
 sed -i "s/XKBLAYOUT=.*/XKBLAYOUT=\"de\"/g" /etc/default/keyboard
+
+# File redirect
+diff <(transform <file1) <(transform <file2)
+
+# sed: Remove \r\n from scripts written on windows
+sed -i 's/\r//g' $FILE
