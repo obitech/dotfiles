@@ -66,6 +66,8 @@ media.peerconnection.enabled = false
 # Firefox: prevent HTML canvans fingerprinting
 privacy.resistFingerprinting = true
 
+privacy.firstparty.isolate = true
+
 # Firefox: user agent override
 general.useragent.override
 https://techblog.willshouse.com/2012/01/03/most-common-user-agents/
@@ -135,3 +137,9 @@ diff <(transform <file1) <(transform <file2)
 
 # sed: Remove \r\n from scripts written on windows
 sed -i 's/\r//g' $FILE
+
+# regex: version number
+^(([0-9]+)|(([0-9]+\.[0-9]*)+))$
+
+# kill: kill process by process name
+ps -ef | grep 'myProcessName' | grep -v grep | awk '{print $2}' | xargs -r kill -9
