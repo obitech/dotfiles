@@ -143,3 +143,9 @@ sed -i 's/\r//g' $FILE
 
 # kill: kill process by process name
 ps -ef | grep 'myProcessName' | grep -v grep | awk '{print $2}' | xargs -r kill -9
+
+# macOS: flush DNS cache
+sudo killall -HUP mDNSResponder
+
+# find: find "foo" in files
+find /path/to/dir -type f | xargs grep -l "foo"
