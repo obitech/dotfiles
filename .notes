@@ -8,7 +8,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub user@server
 docker rm -f $(docker container ps -a | grep -v "^CONTAINER" | awk '{print $1}')
 
 # Create new user
-useradd $NAME -m -r -q $NAME -p $(openssl passwd -crypt $CLEARPASSWD)
+useradd -m -r -U $USERNAME -p $(openssl passwd -crypt $CLEARPASSWD)
 
 # Create passwd for new user
 echo -e "password\npassword" | passwd $USER
