@@ -1,3 +1,5 @@
+export EDITOR=$(which vim)
+
 # Shortcuts
 alias ll="ls -lh --color"
 alias la="ls -lah --color"
