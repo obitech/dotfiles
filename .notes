@@ -152,3 +152,12 @@ find /path/to/dir -type f | xargs grep -l "foo"
 
 # echo into sudo
 echo 'example' | sudo tee /path/to/file
+
+# tcpdump: capture DNS traffic (-n => don't convert addrs to names) 
+sudo tcpdump -i $IFACE port 53 -n
+
+# tcpdump: see if any traffic is not sent via VPN
+sudo tcpdump -i any "src not $INTERNALIP and dst not $VPNIP"
+
+# tcpdump: show only ack packages
+sudo tcpdump -i $IFACE -n 'tcp[tcpflags] & tcp-ack != 0'
