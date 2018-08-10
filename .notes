@@ -117,7 +117,7 @@ kubectl config use-context minikube
 # ntfs: mount disk on mac
 sudo /usr/local/bin/ntfs-3g /dev/$DISK /Volumes/NTFS -olocal -oallow_other
 
-# ssh-keygen: generate new SSH key without passphrase
+# ssh-keygen: generate new RSA SSH key without passphrase (-N)
 ssh-keygen -b 4096 -t rsa -f /path/to/keyfile -q -N "" -C $(date '+%Y%m%d-%T')
 
 # git: only clone latest commit
