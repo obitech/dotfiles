@@ -161,3 +161,9 @@ sudo tcpdump -i any "src not $INTERNALIP and dst not $VPNIP"
 
 # tcpdump: show only ack packages
 sudo tcpdump -i $IFACE -n 'tcp[tcpflags] & tcp-ack != 0'
+
+# gunicorn: worker count, 1+2 * # cores
+gunicorn -w $(( 2 * `cat /proc/cpuinfo | grep 'core id' | wc -l` + 1 )) myapp:wsgi
+
+# gunicorn: set max-requests to restart workers, prevents memory leaks
+gunicorn --max-requests 50
