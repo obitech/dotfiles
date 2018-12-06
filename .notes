@@ -167,3 +167,6 @@ gunicorn -w $(( 2 * `cat /proc/cpuinfo | grep 'core id' | wc -l` + 1 )) myapp:ws
 
 # gunicorn: set max-requests to restart workers, prevents memory leaks
 gunicorn --max-requests 50
+
+# bash: one-line for loop with curl
+for i in {1..5}; do echo ${i}; done
