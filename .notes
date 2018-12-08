@@ -170,3 +170,13 @@ gunicorn --max-requests 50
 
 # bash: one-line for loop with curl
 for i in {1..5}; do echo ${i}; done
+
+# bootable stick on macOS
+# 1) Get right device
+disktuil list
+# 2) repartition
+diskutil partitionDisk $DEVICE 1 "Free Space" "unused" "100%"
+# 3) Copy image
+dd if=$IMAGE of=$DEVICE bs=1m
+# 4) Eject
+diskutil eject $DEVICE
