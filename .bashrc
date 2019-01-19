@@ -10,6 +10,10 @@ alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
+# apps
+alias dc="docker-compose"
+alias k="kubectl"
+
 alias c="clear"
 
 alias grep="grep --colour=auto"
