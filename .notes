@@ -48,11 +48,15 @@ openssl s_client -connect host:port
 ssh -l $USER -p $PORT  -L 1234:localhost:22 $HOST
 
 # git: Adding git remote, u = upstream
-git remote add origin git@github.com:obitech/REPO.git
+git remote add origin $REPO
 git push -u origin master
 
 # git: Updating git remote
-git remote set-url origin git@github.com:obitech/REPO.git
+git remote set-url origin $REPO
+
+# git: set upstream
+git remote add upstream $REPO
+git remote set-url --push upstream no_push
 
 # git: create and checkout into new branch
 git checkout -b $BRANCH
