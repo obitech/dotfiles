@@ -10,7 +10,7 @@ alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
-alias grep="grep --colour=auto"
+alias grep="grep --color=auto"
 
 # Ignoring duplicates in bash history
 export HISTCONTROL=ignoreboth:erasedups
