@@ -1,0 +1,68 @@
+{
+    "workbench.colorTheme": "Material Theme High Contrast",
+    "materialTheme.fixIconsRunning": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "window.zoomLevel": 0,
+    "breadcrumbs.enabled": true,
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "none",
+    "editor.minimap.enabled": false,
+    "extensions.ignoreRecommendations": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "todo-tree.defaultHighlight": {
+        "foreground": "green",
+        "type": "none"
+    },
+    "todo-tree.customHighlight": {
+        "TODO": {},
+        "FIXME": {}
+    },
+    "files.autoSaveDelay": 500,
+    "workbench.colorCustomizations": {},
+    "materialTheme.accent": "Remove accents",
+    "[shellscript]": {},
+    "go.useLanguageServer": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {},
+        "FIXME": {}
+    },
+    "todo-tree.highlights.defaultHighlight": {
+        "foreground": "green",
+        "type": "none"
+    },
+    "[go]": {
+        "editor.snippetSuggestions": "none",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "files.eol": "\n",
+    },
+    "gopls": {
+        "completeUnimported": true,
+        "usePlaceholders": true,
+        "completionDocumentation": true,
+        "hoverKind": "SynopsisDocumentation", // No/Synopsis/Full, default Synopsis
+        "watchFileChanges": true,
+        "deepCompletion": true,
+    },
+    "go.vetOnSave": "package",
+    "go.languageServerExperimentalFeatures": {
+        "format": true,
+        "autoComplete": true,
+        "rename": true,
+        "goToDefinition": true,
+        "hover": true,
+        "signatureHelp": true,
+        "goToTypeDefinition": true,
+        "goToImplementation": true,
+        "documentSymbols": true,
+        "workspaceSymbols": true,
+        "findReferences": true,
+        "diagnostics": true,
+        "documentLink": true
+    },
+}
